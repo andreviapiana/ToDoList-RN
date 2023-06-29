@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { styles } from './styles'
 
 import { Header } from '../../components/Header'
@@ -9,7 +9,6 @@ export function Home() {
     <View style={styles.container}>
       <Header />
       <Content />
-      <Text>Home</Text>
     </View>
   )
 }

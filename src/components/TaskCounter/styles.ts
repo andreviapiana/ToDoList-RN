@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     marginTop: 32,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 20,
   },
   taskInfo: {
     flexDirection: 'row',
