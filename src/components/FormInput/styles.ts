@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginTop: -26,
-    paddingHorizontal: 24,
   },
   textInput: {
     flex: 1,
