@@ -6,12 +6,22 @@ import Checkbox from 'expo-checkbox'
 import { useState } from 'react'
 import { TaskProps } from '../Content'
 
-export function TaskCard({ id, content, isCompleted }: TaskProps) {
+interface TaskCardProps {
+  task: TaskProps
+  onToggleCheckedTask: (id: string) => void
+}
+
+export function TaskCard({ task, onToggleCheckedTask }: TaskCardProps) {
   // Toggle do Checkbox
   const [isChecked, setChecked] = useState(false)
 
   // Mudança de cor ao clicar no botão da lixeira
   const [buttonPressed, setButtonPressed] = useState(false)
+
+  function handleToggleTask(task: TaskProps) {
+    setChecked(!isChecked)
+    onToggleCheckedTask(task.id)
+  }
 
   return (
     <View style={styles.container}>
@@ -19,13 +29,13 @@ export function TaskCard({ id, content, isCompleted }: TaskProps) {
         <Checkbox
           style={isChecked ? styles.checkbox : styles.checkboxUnchecked}
           value={isChecked}
-          onValueChange={setChecked}
+          onValueChange={() => handleToggleTask(task)}
           color={isChecked ? '#5E60CE' : '#4EA8DE'}
         />
       </TouchableHighlight>
 
-      <Text style={isCompleted ? styles.completedText : styles.text}>
-        {content}
+      <Text style={task.isCompleted ? styles.completedText : styles.text}>
+        {task.content}
       </Text>
 
       <TouchableHighlight

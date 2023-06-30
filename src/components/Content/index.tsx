@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, SafeAreaView } from 'react-native'
 import { FormInput } from '../FormInput'
 import { TaskCard } from '../TaskCard'
 import { TaskCardEmpty } from '../TaskCardEmpty'
@@ -16,10 +16,26 @@ export interface TaskProps {
 export function Content() {
   const [tasks, setTasks] = useState<TaskProps[]>([])
 
+  // Criação de nova Tarefa
   function handleAddNewTask(task: TaskProps) {
     setTasks((prevState) => [...prevState, task])
   }
 
+  // Alteração do State de uma Tarefa
+  function handleToggleTask(id: string) {
+    const updatedTask = tasks.map((task) =>
+      task.id === id
+        ? {
+            ...task,
+            isCompleted: !task.isCompleted,
+          }
+        : task,
+    )
+
+    setTasks(updatedTask)
+  }
+
+  // Contagem de Tarefas e de Tarefas Completadas
   const tasksCreatedCounter = tasks.length
 
   const completedTasks = tasks.reduce((acc, task) => {
@@ -27,7 +43,7 @@ export function Content() {
   }, 0)
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FormInput onAddNewTask={handleAddNewTask} />
 
       <TaskCounter
@@ -41,9 +57,8 @@ export function Content() {
         renderItem={({ item }) => {
           return (
             <TaskCard
-              id={item.id}
-              isCompleted={item.isCompleted}
-              content={item.content}
+              task={item}
+              onToggleCheckedTask={handleToggleTask}
             />
           )
         }}
@@ -52,6 +67,6 @@ export function Content() {
           return <TaskCardEmpty />
         }}
       />
-    </View>
+    </SafeAreaView>
   )
 }
