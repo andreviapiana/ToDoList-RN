@@ -4,8 +4,9 @@ import { styles } from './styles'
 import { Trash } from 'phosphor-react-native'
 import Checkbox from 'expo-checkbox'
 import { useState } from 'react'
+import { TaskProps } from '../Content'
 
-export function TaskCard() {
+export function TaskCard({ id, content, isCompleted }: TaskProps) {
   // Toggle do Checkbox
   const [isChecked, setChecked] = useState(false)
 
@@ -23,8 +24,8 @@ export function TaskCard() {
         />
       </TouchableHighlight>
 
-      <Text style={isChecked ? styles.completedText : styles.text}>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
+      <Text style={isCompleted ? styles.completedText : styles.text}>
+        {content}
       </Text>
 
       <TouchableHighlight
