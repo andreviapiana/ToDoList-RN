@@ -9,9 +9,14 @@ import { TaskProps } from '../Content'
 interface TaskCardProps {
   task: TaskProps
   onToggleCheckedTask: (id: string) => void
+  onRemoveTask: (id: string) => void
 }
 
-export function TaskCard({ task, onToggleCheckedTask }: TaskCardProps) {
+export function TaskCard({
+  task,
+  onToggleCheckedTask,
+  onRemoveTask,
+}: TaskCardProps) {
   // Toggle do Checkbox
   const [isChecked, setChecked] = useState(false)
 
@@ -42,6 +47,7 @@ export function TaskCard({ task, onToggleCheckedTask }: TaskCardProps) {
         underlayColor="#333333"
         onShowUnderlay={() => setButtonPressed(true)}
         onHideUnderlay={() => setButtonPressed(false)}
+        onPress={() => onRemoveTask(task.id)}
       >
         <Trash size={21} color={buttonPressed ? '#E25858' : '#808080'} />
       </TouchableHighlight>

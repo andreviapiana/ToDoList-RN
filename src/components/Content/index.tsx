@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FlatList, SafeAreaView } from 'react-native'
+import { Alert, FlatList, SafeAreaView } from 'react-native'
 import { FormInput } from '../FormInput'
 import { TaskCard } from '../TaskCard'
 import { TaskCardEmpty } from '../TaskCardEmpty'
@@ -35,6 +35,22 @@ export function Content() {
     setTasks(updatedTask)
   }
 
+  // Removendo uma Tarefa
+  function removeTask(id: string) {
+    const tasksFiltered = tasks.filter((task) => task.id !== id)
+
+    Alert.alert('Remover tarefa', 'Deseja remover essa tarefa?', [
+      {
+        text: 'Sim',
+        onPress: () => setTasks(tasksFiltered),
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ])
+  }
+
   // Contagem de Tarefas e de Tarefas Completadas
   const tasksCreatedCounter = tasks.length
 
@@ -59,6 +75,7 @@ export function Content() {
             <TaskCard
               task={item}
               onToggleCheckedTask={handleToggleTask}
+              onRemoveTask={removeTask}
             />
           )
         }}
