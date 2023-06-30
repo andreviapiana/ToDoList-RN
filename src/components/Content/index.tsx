@@ -20,11 +20,20 @@ export function Content() {
     setTasks((prevState) => [...prevState, task])
   }
 
+  const tasksCreatedCounter = tasks.length
+
+  const completedTasks = tasks.reduce((acc, task) => {
+    return task.isCompleted ? acc + 1 : acc
+  }, 0)
+
   return (
     <View style={styles.container}>
       <FormInput onAddNewTask={handleAddNewTask} />
 
-      <TaskCounter />
+      <TaskCounter
+        tasksCreatedCounter={tasksCreatedCounter}
+        completedTasks={completedTasks}
+      />
 
       <FlatList
         data={tasks}
