@@ -21,12 +21,11 @@ ___
 ## 🎨 Layout
 Imagens da aplicação são vistas na imagem abaixo:
 
-![todo](https://github.com/andreviapiana/test/assets/106932234/6542f975-4692-4eba-96a5-d0e097711208)
-
+![todolist capa](https://github.com/andreviapiana/ToDoList-RN/assets/106932234/cd0527b4-83ca-4fdf-8194-dd9816ca403e)
 
 A execução da aplicação em meu celular é vista a seguir:
 
-![execution](https://github.com/andreviapiana/test/assets/106932234/119b6640-d64a-4db3-8045-316c0af3a18e)
+![todolist execution](https://github.com/andreviapiana/ToDoList-RN/assets/106932234/e9976239-1a93-47ec-bdb9-6a9163e35b14)
 
 ___
 
